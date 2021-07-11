@@ -3,6 +3,8 @@ import { Form, Icon, Input } from "antd";
 import { Button, Block } from "../../../components";
 import { Link } from 'react-router-dom';
 
+import { validateField } from '../../../utils/helpers'
+
 const RegisterForm = props => {
     const {
         values,
@@ -25,7 +27,7 @@ const RegisterForm = props => {
                 {!success ? (
                 <Form onSubmit={handleSubmit} className="login-form">
                     <Form.Item 
-                        validateStatus={!touched.email ? "" : (errors.email ? 'error' : 'success')}
+                        validateStatus={validateField("email", touched, errors)}
                         hasFeedback>
                         <Input
                             id="email" 
@@ -49,7 +51,7 @@ const RegisterForm = props => {
                         />
                     </Form.Item>
                     <Form.Item 
-                        validateStatus={!touched.password ? "" : (errors.password ? 'error' : 'success')}
+                        validateStatus={validateField("password", touched, errors)}
                         help={!touched.password ? "" : errors.password}
                         hasFeedback>
                         <Input
@@ -65,12 +67,14 @@ const RegisterForm = props => {
                             onBlur={handleBlur}
                         />
                     </Form.Item>
-                    <Form.Item>
+                    <Form.Item
+                        validateStatus={validateField("password", touched, errors)}>
                         <Input 
                             prefix={
                                 <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
                             }
                             size="large"
+                            type="password2"
                             placeholder="Повторите пароль"
                         />
                     </Form.Item>
@@ -99,7 +103,7 @@ const RegisterForm = props => {
                 )}
             </Block>
         </div>
-    )
-}
+    );
+};
 
 export default RegisterForm;
