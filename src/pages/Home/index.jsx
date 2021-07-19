@@ -1,31 +1,39 @@
 import React from 'react';
-import { DialogItem } from '../../components'
+import { Message, Dialogs } from '../../components';
 
 import './Home.scss';
 
 const Home = () => (
     <section className="home">
-        <div className="dialogs">
-            <DialogItem 
-                user={{
-                    fullName: "Федор Достоевский",
-                    isOnline: false
-                }} 
-                unreaded={10} />
-        </div>
-        {/* <Dialogs items={[
-            {
-                user: {
-                    fullname: 'Vage Igityan',
-                    avatar: null
+        <Dialogs
+            userId={0}
+            items={[
+                {
+                    _id: "d95b2b8d46ebc680284bb1e90692f8d4",
+                    text: "I you wanna be the best, you gotta beat the best, and the best is blessed babyyyyy",
+                    created_at: new Date(2021, 2, 3),
+                    user: {
+                        _id: "d95b2b8d46ebc680284bb1e90692f8d4",
+                        fullname: 'Vage Igityan',
+                        avatar: 'https://themoviekarma.files.wordpress.com/2021/05/6e35a-16108415420871-800.jpg'
+                    }
                 },
-                message: {
-                    text: "Everybody's a gangsta, till they meet me",
-                    isReaded: false,
-                    created_at: new Date()
+                {
+                    _id: "d95b2b8d46ebc680284bb1e90692f8d4",
+                    text: "The Gods envy us. They envy us, because we are mortal. Because at any time we can die. You'll never be prettier, than now. We'll never be here again",
+                    created_at: new Date(),
+                    user: {
+                        _id: "d95b2b8d46ebc680284bb1e90692f8d4",
+                        fullname: 'Cristiano Ronaldo',
+                        avatar: null
+                    }
                 }
-            }
-        ]} */}
+        ]} />
+        {/* <Message
+            avatar="http://www.corporacia.ru/_data/pages/0001451/52149.jpg"
+            audio="https://notificationsounds.com/storage/sounds/file-sounds-1075-12-days-of-christmas.mp3"
+            date={new Date(2021,6,3)}
+        /> */}
         {/* <Message
             avatar="http://www.corporacia.ru/_data/pages/0001451/52149.jpg"
             text="Hello Hello Hello Hello Hello HelloHelloHelloHello Hello Hello Hello Hello Hello Hello HelloHello Hello Hello Hello Hello Hello HelloHello Hello Hello Hello Hello Hello HelloHello Hello Hello Hello Hello Hello HelloHello Hello Hello Hello Hello Hello HelloHello Hello Hello Hello Hello Hello HelloHello Hello Hello Hello Hello Hello HelloHello Hello Hello Hello Hello Hello HelloHello Hello Hello Hello Hello Hello HelloHello Hello Hello Hello Hello Hello Hello"

@@ -1,45 +1,36 @@
 import React from "react";
-import { Time, IconReaded } from "../";
+import { IconReaded, Avatar } from "../";
 import classNames from "classnames";
+import format from "date-fns/format";
+import isToday from "date-fns/is_today";
 
 import "./DialogItem.scss";
 
-const getAvatar = (avatar) => {
-  if (avatar) {
-    return (
-      <img
-        src="https://source.unsplash.com/100x100/?random-1&nature,water"
-        alt=""
-      />
-    );
+const getMessageTime = (created_at) => {
+  if (isToday(created_at)) {
+    return format(created_at, "HH:mm");
   } else {
-    //make avatar
+    return format(created_at, "DD.MM.YYYY");
   }
 };
 
-const DialogItem = ({ user, messsage, unreaded }) => (
+const DialogItem = ({ user, unreaded, created_at, text, isMe }) => (
   <div
     className={classNames("dialogs__item", {
       "dialogs__item--online": user.isOnline,
     })}
   >
     <div className="dialogs__item-avatar">
-      {getAvatar("https://source.unsplash.com/100x100/?random-1&nature,water")}
+      <Avatar user={user} />
     </div>
     <div className="dialogs__item-info">
       <div className="dialogs__item-info-top">
-        <b>Федор Достоевский</b>
-        <span className="message__date">
-          {/* <Time date={new Date(2021, 6, 3)} /> */}
-          13:03
-        </span>
+        <b>{user.fullname}</b>
+        <span className="message__date">{getMessageTime(created_at)}</span>
       </div>
       <div className="dialogs__item-info-bottom">
-        <p>
-          If you wanna be the the best, you gotta beat the best, and the best is
-          blessed babyyyyyy
-        </p>
-        <IconReaded isMe={true} isReaded={true} />
+        <p>{text}</p>
+        {isMe && <IconReaded isMe={true} isReaded={true} />}
         {unreaded > 0 && (
           <div className="dialogs__item-info-bottom-count">
             {unreaded > 9 ? "+9" : unreaded}
